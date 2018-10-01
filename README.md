@@ -1,2 +1,1 @@
-# simple-qagent
-Simple Q-learning project
+Simple Q-learned agent that interacts with an environment.
