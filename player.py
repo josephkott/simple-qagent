@@ -18,10 +18,10 @@ class Player:
         # Learning rate 
         self.alpha = 0.1
 
-        # \gamma is a parameter of Q - learing algorithm
+        # gamma is a parameter of Q - learing algorithm
         self.gamma = 0.9
 
-        # We use \epsilon - gready strategy of learning 
+        # We use epsilon - greedy strategy of learning 
         self.epsilon = 0.1
         
         # Number of epochs (fully played games) to study an agent
