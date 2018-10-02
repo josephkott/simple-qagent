@@ -3,11 +3,12 @@ from math import log10
 
 class Agent:
     """
-    This class represents a game agent. It has 3 resources: food, rest, and credits. It acts in the world trying to
+    This class represents a game agent. It has 3 resources: food, rest, and credits. Agent acts in the world trying to
     stay alive as long as possible.
     """
     MAX_FOOD = 20
     MAX_REST = 20
+    MAX_CREDS = 20
 
     def __init__(self, food, rest, creds):
         self.food = food

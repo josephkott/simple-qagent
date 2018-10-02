@@ -2,11 +2,13 @@
 import sys
 import colorama
 
+from agent import Agent
+
 
 class GameObject:
     def __init__(self, populated=False):
-        self.background = colorama.Back.CYAN
-        self.populated = populated
+        self.background = colorama.Back.CYAN # a cell is highlighted when agent is there
+        self.populated = populated # indicate if agent is there
 
     def populate(self):
         self.populated = True
@@ -18,6 +20,9 @@ class GameObject:
         return self.populated
     
     def show(self, symbol):
+        """
+        Simple console visualisation with colorama.
+        """
         if self.is_populated():
             sys.stdout.write(' ' + self.background + symbol + colorama.Style.RESET_ALL + ' ')
         else:
@@ -39,7 +44,7 @@ class Home(GameObject):
     
     def affect(self, agent):
         agent.food -= 1
-        agent.rest = min(agent.rest + 5, 20)
+        agent.rest = min(agent.rest + 5, Agent.MAX_REST)
 
 
 class Factory(GameObject): 
@@ -49,7 +54,7 @@ class Factory(GameObject):
     def affect(self, agent):
         agent.food -= 2
         agent.rest -= 2
-        agent.creds = min(agent.creds + 1, 20)
+        agent.creds = min(agent.creds + 1, Agent.MAX_CREDS)
 
 
 class Shop(GameObject):
@@ -59,7 +64,7 @@ class Shop(GameObject):
     def affect(self, agent):
         agent.rest -= 1
         if agent.creds > 0:
-            agent.food = min(agent.food + 5, 20)
+            agent.food = min(agent.food + 5, Agent.MAX_REST)
             agent.creds -= 1
         else:
             agent.food -= 1

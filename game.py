@@ -8,12 +8,17 @@ class Game:
     def __init__(self):
         self.desk_width = 3
         self.desk_height = 3
+
+        # Defining a game desk
         self.desk = [
             [Home(),   Street(), Factory()],
             [Street(), Street(), Street() ],
             [Street(), Street(), Shop()   ],
         ]
-        self.state_size = self.desk_height * self.desk_width * 21 * 21 * 21
+
+        # Total state size
+        self.state_size = self.desk_height * self.desk_width * \
+            (Agent.MAX_FOOD + 1) * (Agent.MAX_REST + 1) * (Agent.MAX_CREDS + 1)
 
     def create_agent(self):
         self.turns = 0
@@ -25,6 +30,7 @@ class Game:
     def encode(self):
         """
         Encode each game state to a unique number. This numbers are used in Q - table (as row indices).
+        This function is a standart function for all OpenAI Gym environmen.
         """
         i, j = self.agent.get_position()
         code = self.agent.food
@@ -40,7 +46,7 @@ class Game:
     
     def decode(self, code):
         """
-        Decode game state from a number.
+        Decode game state from a number. This function is a standart function for all OpenAI Gym environmen.
         """
         out = []
         out.append(code % self.desk_height)
